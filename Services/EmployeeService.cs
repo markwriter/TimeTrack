@@ -7,12 +7,13 @@ using TimeTrack.Models;
 
 namespace TimeTrack.Services
 {
-    public class TimeTrackService
+    public class EmployeeService
     {
         private readonly TimeTrackContext _context;
 
-        public TimeTrackService(TimeTrackContext context)
+        public EmployeeService(TimeTrackContext context)
         {
+            DataGenerator.Initialize(context);
             _context = context;
         }
 

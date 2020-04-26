@@ -12,11 +12,11 @@ namespace TimeTrack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
-        private readonly TimeTrackService _timeTrackService;
+        private readonly EmployeeService _timeTrackService;
 
-        public EmployeesController(TimeTrackService timeTrackService)
+        public EmployeeController(EmployeeService timeTrackService)
         {
             _timeTrackService = timeTrackService;
         }
