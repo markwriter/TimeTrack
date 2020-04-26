@@ -10,10 +10,55 @@ namespace TimeTrack.Services
     {
         public static void Initialize(TimeTrackContext context)
         {
+            AddEmployees(context);
+            AddProjects(context);
+        }
+        private static void AddProjects(TimeTrackContext context)
+        {
+            if (context.Projects.Any())
+            {
+                return;
+            }
 
+            context.Projects.AddRange(
+                new Project
+                {
+                    Id = 1,
+                    Name = "UW"
+                },
+                new Project
+                {
+                    Id = 2,
+                    Name = "PI"
+                },
+                new Project
+                {
+                    Id = 3,
+                    Name = "Duck Creek"
+                },
+                new Project
+                {
+                    Id = 4,
+                    Name = "Support Tickets"
+                },
+                new Project
+                {
+                    Id = 5,
+                    Name = "SIB Printing"
+                },
+                new Project
+                {
+                    Id = 6,
+                    Name = "ACES Rewrite"
+                });
+
+            context.SaveChanges();
+        }
+        private static void AddEmployees(TimeTrackContext context)
+        {
             if (context.Employees.Any())
             {
-                return;   
+                return;
             }
 
             context.Employees.AddRange(
@@ -55,7 +100,6 @@ namespace TimeTrack.Services
                 });
 
             context.SaveChanges();
-            
         }
     }
 }

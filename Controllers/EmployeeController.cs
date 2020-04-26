@@ -14,25 +14,25 @@ namespace TimeTrack.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeService _timeTrackService;
+        private readonly EmployeeService _employeeService;
 
-        public EmployeeController(EmployeeService timeTrackService)
+        public EmployeeController(EmployeeService employeeService)
         {
-            _timeTrackService = timeTrackService;
+            _employeeService = employeeService;
         }
 
         // GET: api/Employees
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
-            return Ok(await _timeTrackService.GetEmployees());
+            return Ok(await _employeeService.GetEmployees());
         }
 
         // GET: api/Employees/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(long id)
         {
-            var employee = await _timeTrackService.GetEmployee(id);
+            var employee = await _employeeService.GetEmployee(id);
 
             if (employee == null)
             {
@@ -53,7 +53,7 @@ namespace TimeTrack.Controllers
                 return BadRequest();
             }
 
-            return await _timeTrackService.ModifyEmployee(employee) ? 
+            return await _employeeService.ModifyEmployee(employee) ? 
                 (IActionResult)base.NoContent() : 
                 base.NotFound();
         }
@@ -64,7 +64,7 @@ namespace TimeTrack.Controllers
         [HttpPost]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
-            await _timeTrackService.AddEmployee(employee);
+            await _employeeService.AddEmployee(employee);
             return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
         }
 
@@ -72,7 +72,7 @@ namespace TimeTrack.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Employee>> DeleteEmployee(long id)
         {
-            return await _timeTrackService.RemoveEmployee(id);
+            return await _employeeService.RemoveEmployee(id);
         }
 
 
