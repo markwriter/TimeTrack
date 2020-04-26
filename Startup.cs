@@ -30,6 +30,7 @@ namespace TimeTrack
         {
             services.AddScoped<EmployeeService>();
             services.AddScoped<ProjectService>();
+            services.AddScoped<StatusEntryService>();
             services.AddDbContext<TimeTrackContext>(opt => opt.UseInMemoryDatabase("TimeTrack"));
             services.AddControllers();
         }
